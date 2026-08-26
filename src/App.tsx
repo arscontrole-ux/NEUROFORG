@@ -224,7 +224,13 @@ function SidePanel({ info, onInstallHelp }: { info: InstallInfo; onInstallHelp: 
           <span className="flex-1 text-left">{info.installed ? "Application installée" : "Installer l'application"}</span>
           <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${info.installed ? "bg-ok pulse-dot" : "bg-ember"}`} />
         </button>
-        <p className="font-mono text-[9.5px] text-mute text-center mt-3 tracking-wider">v0.9.4 · moteur GGUF simulé</p>
+        <a
+          href="/acces.html"
+          className="block font-mono text-[9.5px] text-mute text-center mt-3 tracking-wider hover:text-ember2 transition-colors cursor-pointer"
+          title="Ouvrir la page de lien d'accès au SaaS"
+        >
+          v0.9.4 · lien d'accès ↗
+        </a>
       </div>
     </aside>
   );
