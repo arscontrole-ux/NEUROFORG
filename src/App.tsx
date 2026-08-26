@@ -83,17 +83,21 @@ function TopBar({ info, onInstallHelp }: { info: InstallInfo; onInstallHelp: () 
           </span>
         )}
         {info.installed ? (
-          <span className="chip !text-ok !border-ok/40 hidden sm:inline-flex" title="NEUROFORGE tourne en mode application">
-            <Icon name="check" size={12} /> application installée
+          <span
+            className="inline-flex items-center gap-1.5 rounded-lg border border-ok/40 bg-ok/10 text-ok px-2.5 py-1.5 text-[12.5px] font-semibold shrink-0"
+            title="NEUROFORGE tourne en mode application"
+          >
+            <Icon name="check" size={13} /> <span className="hidden sm:inline">Installée</span>
           </span>
-        ) : info.canInstall ? (
-          <button className="btn btn-ember btn-sm hidden sm:inline-flex" onClick={doInstall} disabled={info.prompting} title="Installer NEUROFORGE comme application de bureau">
-            <Icon name={info.prompting ? "refresh" : "download"} size={14} className={info.prompting ? "spin-slow" : ""} />
-            {info.prompting ? "Installation…" : "Installer l'app"}
-          </button>
         ) : (
-          <button className="chip cursor-pointer hover:!border-ember/50 hover:!text-ember2 hidden sm:inline-flex transition-colors" onClick={onInstallHelp} title="Installer NEUROFORGE comme application">
-            <Icon name="download" size={12} /> installer l'app
+          <button
+            className="btn btn-ember btn-sm install-glow shrink-0"
+            onClick={doInstall}
+            disabled={info.prompting}
+            title="Installer NEUROFORGE comme application — bouton toujours disponible"
+          >
+            <Icon name={info.prompting ? "refresh" : "download"} size={14} className={info.prompting ? "spin-slow" : ""} />
+            <span>{info.prompting ? "Installation…" : "Installer"}</span>
           </button>
         )}
         {(activeDl.length > 0 || totalSpeed > 0) && (
@@ -164,6 +168,21 @@ function SidePanel({ info, onInstallHelp }: { info: InstallInfo; onInstallHelp: 
           );
         })}
       </nav>
+
+      {/* icône d'installation — visible dans le rail compact (mobile) */}
+      <div className="p-2.5 lg:hidden border-t border-line">
+        <button
+          onClick={onInstallHelp}
+          className={`w-full py-2.5 rounded-lg border flex items-center justify-center transition-colors cursor-pointer ${
+            info.installed
+              ? "border-ok/35 bg-ok/10 text-ok"
+              : "border-ember/40 bg-ember/10 text-ember2 install-glow"
+          }`}
+          title={info.installed ? "Application installée" : "Installer NEUROFORGE"}
+        >
+          <Icon name={info.installed ? "check" : "download"} size={17} />
+        </button>
+      </div>
 
       <div className="p-3 hidden lg:block">
         <div className="panel !rounded-lg p-3.5">
