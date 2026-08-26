@@ -4,7 +4,8 @@ export type IconName =
   | "logo" | "chat" | "grid" | "download" | "server" | "gauge" | "play" | "pause"
   | "stop" | "x" | "check" | "copy" | "trash" | "refresh" | "bolt" | "layers"
   | "shield" | "search" | "terminal" | "cpu" | "net" | "send" | "alert" | "folder"
-  | "key" | "arrowRight" | "plus" | "clock" | "box" | "sparkle" | "sliders" | "memory" | "info";
+  | "key" | "arrowRight" | "plus" | "clock" | "box" | "sparkle" | "sliders" | "memory" | "info"
+  | "monitor" | "smartphone" | "share" | "help";
 
 const P: Record<IconName, ReactElement> = {
   logo: (
@@ -167,6 +168,32 @@ const P: Record<IconName, ReactElement> = {
     <>
       <circle cx="12" cy="12" r="9" />
       <path d="M12 16v-4M12 8h.01" />
+    </>
+  ),
+  monitor: (
+    <>
+      <rect x="2" y="3.5" width="20" height="13" rx="2" />
+      <path d="M8 21h8M12 16.5V21" />
+    </>
+  ),
+  smartphone: (
+    <>
+      <rect x="6.5" y="2" width="11" height="20" rx="2.5" />
+      <path d="M11 18h2" />
+    </>
+  ),
+  share: (
+    <>
+      <path d="M12 3v12" />
+      <path d="M7.5 7.5L12 3l4.5 4.5" />
+      <path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
+    </>
+  ),
+  help: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 1.8-2.8 2.2-2.8 4" />
+      <path d="M12 17.5h.01" />
     </>
   ),
 };

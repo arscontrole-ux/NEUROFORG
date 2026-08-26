@@ -1,0 +1,32 @@
+{
+  "name": "NEUROFORGE — Studio IA local",
+  "short_name": "NEUROFORGE",
+  "description": "Studio d'IA 100 % local : téléchargez des modèles en multi-parties sans coupure, chargez-les en mémoire et discutez — sans cloud.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0d12",
+  "theme_color": "#0b0d12",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["productivity", "developer tools", "utilities"],
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
