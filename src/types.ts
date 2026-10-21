@@ -1,4 +1,4 @@
-export type View = "chat" | "catalog" | "downloads" | "server" | "system";
+export type View = "chat" | "catalog" | "downloads" | "server" | "system" | "connectors";
 
 export type SegStatus = "pending" | "active" | "done" | "error";
 export type TaskStatus = "queued" | "downloading" | "paused" | "verifying" | "done" | "error";

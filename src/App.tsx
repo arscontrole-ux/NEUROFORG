@@ -8,6 +8,7 @@ import { CatalogView } from "./views/CatalogView";
 import { DownloadsView } from "./views/DownloadsView";
 import { ServerView } from "./views/ServerView";
 import { SystemView } from "./views/SystemView";
+import { ConnectorsView } from "./views/ConnectorsView";
 import { useInstall } from "./hooks/useInstall";
 import type { InstallInfo } from "./hooks/useInstall";
 import type { View } from "./types";
@@ -22,6 +23,7 @@ const NAV: { view: View; label: string; icon: IconName }[] = [
   { view: "downloads", label: "Téléchargements", icon: "download" },
   { view: "server", label: "Serveur local", icon: "server" },
   { view: "system", label: "Système", icon: "gauge" },
+  { view: "connectors", label: "Connecteurs", icon: "layers" },
 ];
 
 const TITLES: Record<View, { title: string; sub: string }> = {
@@ -30,6 +32,7 @@ const TITLES: Record<View, { title: string; sub: string }> = {
   downloads: { title: "Téléchargements", sub: "Multi-parties · reprise sans coupure" },
   server: { title: "Serveur local", sub: "API compatible OpenAI sur 127.0.0.1" },
   system: { title: "Système", sub: "Télémétrie, mémoire & réglages" },
+  connectors: { title: "Connecteurs", sub: "Déploiement & intégrations IA" },
 };
 
 function Clock() {
@@ -440,6 +443,7 @@ function Shell() {
                 {state.view === "downloads" && <DownloadsView />}
                 {state.view === "server" && <ServerView />}
                 {state.view === "system" && <SystemView />}
+                {state.view === "connectors" && <ConnectorsView />}
               </div>
             </div>
           )}
