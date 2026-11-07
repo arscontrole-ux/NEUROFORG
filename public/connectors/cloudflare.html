@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEUROFORGE · Connecteur Cloudflare Pages</title>
+  <meta name="description" content="Déployez NEUROFORGE sur Cloudflare Pages avec edge computing global" />
+  <meta name="theme-color" content="#0b0d12" />
+  <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+  <style>
+    :root {
+      --bg0: #0b0d12; --bg1: #10131b; --bg2: #151a26; --line: #232a3c;
+      --ink: #e9ecf5; --dim: #9aa3ba; --mute: #626d88;
+      --ember: #ff7a29; --teal: #3fd6c3; --ok: #3dd68c;
+      --cf: #f48120;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg0); color: var(--ink); font-family: system-ui, -apple-system, sans-serif; padding: 40px 20px; line-height: 1.6; }
+    .wrap { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 32px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; }
+    h1 svg { color: var(--cf); }
+    .lead { color: var(--dim); margin-bottom: 32px; font-size: 15px; }
+    .card { background: var(--bg1); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .card h2 { font-size: 18px; margin-bottom: 16px; color: var(--ember); display: flex; align-items: center; gap: 10px; }
+    .step { background: var(--bg2); border-left: 3px solid var(--ember); padding: 16px 20px; margin: 14px 0; border-radius: 6px; }
+    .step-num { display: inline-block; background: var(--ember); color: #000; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-weight: 700; font-size: 13px; margin-right: 10px; }
+    code { background: var(--bg0); border: 1px solid var(--line); padding: 2px 7px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--teal); }
+    pre { background: var(--bg0); border: 1px solid var(--line); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7; color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ember); color: #000; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; margin-top: 12px; transition: transform .1s; }
+    .btn:hover { transform: translateY(-1px); }
+    .badge { display: inline-block; background: var(--ok); color: #000; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-left: 8px; }
+    a { color: var(--teal); }
+    footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--mute); text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M7.4 11.5c.3-1.2 1.4-2 2.7-2 .4 0 .7 0 1 .1.9-1.9 2.8-3.1 5-3.1 3 0 5.4 2.4 5.4 5.4 0 .3 0 .6-.1.9.3-.1.6-.1.9-.1 2.3 0 4.2 1.9 4.2 4.2s-1.9 4.2-4.2 4.2H7.4c-3 0-5.4-2.4-5.4-5.4 0-2.8 2.1-5.1 4.9-5.4z"/></svg>
+      Connecteur Cloudflare Pages <span class="badge">Edge Global</span>
+    </h1>
+    <p class="lead">Déployez NEUROFORGE sur <strong>Cloudflare Pages</strong> avec distribution mondiale sur 300+ data centers. Latence ultra-faible, SSL automatique, bande passante illimitée.</p>
+
+    <div class="card">
+      <h2>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Déploiement en 4 étapes
+      </h2>
+
+      <div class="step">
+        <span class="step-num">1</span>
+        <strong>Connectez votre dépôt Git</strong>
+        <p style="margin-top:8px;color:var(--dim)">Sur <a href="https://dash.cloudflare.com/sign-up" target="_blank">dash.cloudflare.com</a> :</p>
+        <ul style="margin:8px 0 0 20px;color:var(--dim)">
+          <li>Allez dans <strong>Workers & Pages → Create</strong></li>
+          <li>Choisissez <strong>Pages → Connect to Git</strong></li>
+          <li>Sélectionnez votre dépôt GitHub/GitLab</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <span class="step-num">2</span>
+        <strong>Configurez le build</strong>
+        <p style="margin-top:8px;color:var(--dim)">Paramètres de build :</p>
+        <pre>Framework preset: Vite
+Build command: npm run build
+Build output directory: dist
+Root directory: /</pre>
+      </div>
+
+      <div class="step">
+        <span class="step-num">3</span>
+        <strong>Variables d'environnement (optionnel)</strong>
+        <p style="margin-top:8px;color:var(--dim)">Ajoutez si nécessaire :</p>
+        <pre>NODE_VERSION: 20
+NODE_ENV: production</pre>
+      </div>
+
+      <div class="step">
+        <span class="step-num">4</span>
+        <strong>Déployez</strong>
+        <p style="margin-top:8px;color:var(--dim)">Cliquez sur <strong>Save and Deploy</strong>. Cloudflare :</p>
+        <ul style="margin:8px 0 0 20px;color:var(--dim)">
+          <li>✅ Build le projet</li>
+          <li>✅ Déploie sur <code>https://votre-projet.pages.dev</code></li>
+          <li>✅ Active le SSL global automatiquement</li>
+          <li>✅ Configure les re-déploiements automatiques</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Avantages Cloudflare
+      </h2>
+      <ul style="margin:0 0 0 20px;color:var(--dim)">
+        <li>🌍 <strong>300+ data centers</strong> dans le monde</li>
+        <li>⚡ <strong>Latence &lt; 50ms</strong> partout</li>
+        <li>🔒 <strong>SSL/TLS automatique</strong></li>
+        <li>📊 <strong>Bande passante illimitée</strong></li>
+        <li>🔄 <strong>Preview deployments</strong> pour chaque PR</li>
+        <li>🛡️ <strong>DDoS protection</strong> incluse</li>
+      </ul>
+      <a href="https://dash.cloudflare.com/sign-up" target="_blank" class="btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        Créer un compte Cloudflare
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        Configuration avancée
+      </h2>
+      <p style="color:var(--dim);margin-bottom:12px">Créez <code>wrangler.toml</code> à la racine pour un contrôle total :</p>
+      <pre>name = "neuroforge"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
+
+[env.production]
+route = "neuroforge.votredomaine.com/*"
+
+[env.preview]
+route = "preview.neuroforge.votredomaine.com/*"</pre>
+    </div>
+
+    <footer>
+      NEUROFORGE · Connecteur Cloudflare Pages · Edge computing global
+    </footer>
+  </div>
+</body>
+</html>

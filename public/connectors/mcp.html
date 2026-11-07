@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEUROFORGE · Connecteur MCP (Model Context Protocol)</title>
+  <meta name="description" content="Intégrez NEUROFORGE avec le Model Context Protocol pour connecter vos outils IA" />
+  <meta name="theme-color" content="#0b0d12" />
+  <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+  <style>
+    :root {
+      --bg0: #0b0d12; --bg1: #10131b; --bg2: #151a26; --line: #232a3c;
+      --ink: #e9ecf5; --dim: #9aa3ba; --mute: #626d88;
+      --ember: #ff7a29; --teal: #3fd6c3; --ok: #3dd68c; --warn: #ffc24b;
+      --mcp: #8b5cf6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg0); color: var(--ink); font-family: system-ui, -apple-system, sans-serif; padding: 40px 20px; line-height: 1.6; }
+    .wrap { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 32px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; }
+    h1 svg { color: var(--mcp); }
+    .lead { color: var(--dim); margin-bottom: 32px; font-size: 15px; }
+    .card { background: var(--bg1); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .card h2 { font-size: 18px; margin-bottom: 16px; color: var(--ember); display: flex; align-items: center; gap: 10px; }
+    .step { background: var(--bg2); border-left: 3px solid var(--ember); padding: 16px 20px; margin: 14px 0; border-radius: 6px; }
+    .step-num { display: inline-block; background: var(--ember); color: #000; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-weight: 700; font-size: 13px; margin-right: 10px; }
+    code { background: var(--bg0); border: 1px solid var(--line); padding: 2px 7px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--teal); }
+    pre { background: var(--bg0); border: 1px solid var(--line); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7; color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ember); color: #000; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; margin-top: 12px; transition: transform .1s; }
+    .btn:hover { transform: translateY(-1px); }
+    .badge { display: inline-block; background: var(--ok); color: #000; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-left: 8px; }
+    .badge-purple { background: var(--mcp); color: #fff; }
+    a { color: var(--teal); }
+    footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--mute); text-align: center; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+    .client-card { background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+    .client-card h3 { font-size: 15px; margin-bottom: 8px; color: var(--mcp); }
+    .client-card p { font-size: 13px; color: var(--dim); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="3"/>
+        <path d="M7 7h10v10H7z"/>
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 7V5M12 19v-2M7 12H5M19 12h-2"/>
+      </svg>
+      Connecteur MCP <span class="badge badge-purple">Model Context Protocol</span>
+    </h1>
+    <p class="lead">Intégrez NEUROFORGE avec le <strong>Model Context Protocol</strong> — le standard ouvert pour connecter vos modèles locaux à Claude, Cursor, et tous les clients MCP compatibles.</p>
+
+    <div class="card">
+      <h2>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        Qu'est-ce que MCP ?
+      </h2>
+      <p style="color:var(--dim)">
+        <strong>Model Context Protocol</strong> est un protocole standardisé créé par Anthropic pour permettre aux assistants IA d'accéder à des outils, ressources et modèles externes. Avec MCP, NEUROFORGE devient un <strong>serveur de contexte</strong> accessible par :
+      </p>
+      <div class="grid-2">
+        <div class="client-card">
+          <h3>🤖 Claude Desktop</h3>
+          <p>Utilisez vos modèles locaux directement dans Claude</p>
+        </div>
+        <div class="client-card">
+          <h3>💻 Cursor IDE</h3>
+          <p>Intégrez l'inférence locale dans votre éditeur</p>
+        </div>
+        <div class="client-card">
+          <h3>🔧 Outils MCP</h3>
+          <p>N'importe quel client compatible MCP</p>
+        </div>
+        <div class="client-card">
+          <h3>🌐 API REST</h3>
+          <p>Exposition HTTP/JSON pour vos scripts</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Configuration en 3 étapes
+      </h2>
+
+      <div class="step">
+        <span class="step-num">1</span>
+        <strong>Activez le serveur MCP dans NEUROFORGE</strong>
+        <p style="margin-top:8px;color:var(--dim)">Dans l'onglet <strong>Système → Serveur local</strong>, activez le mode MCP :</p>
+        <pre># Le serveur MCP écoute sur le port 3333
+# Protocole : JSON-RPC 2.0 sur stdio ou HTTP
+MCP_PORT=3333
+MCP_TRANSPORT=stdio|http</pre>
+      </div>
+
+      <div class="step">
+        <span class="step-num">2</span>
+        <strong>Configurez votre client MCP</strong>
+        <p style="margin-top:8px;color:var(--dim)">Ajoutez NEUROFORGE comme serveur MCP dans votre client. Exemple pour <strong>Claude Desktop</strong> :</p>
+        <pre>// ~/Library/Application Support/Claude/claude_desktop_config.json
+{
+  "mcpServers": {
+    "neuroforge": {
+      "command": "npx",
+      "args": ["-y", "@neuroforge/mcp-server"],
+      "env": {
+        "NEUROFORGE_URL": "http://localhost:1234",
+        "NEUROFORGE_MODEL": "llama-3.1-8b-instruct:Q4_K_M"
+      }
+    }
+  }
+}</pre>
+      </div>
+
+      <div class="step">
+        <span class="step-num">3</span>
+        <strong>Utilisez vos modèles locaux</strong>
+        <p style="margin-top:8px;color:var(--dim)">Dans Claude Desktop ou tout client MCP, vous pouvez maintenant :</p>
+        <ul style="margin:8px 0 0 20px;color:var(--dim)">
+          <li>🔍 <strong>Tools</strong> : appeler vos modèles comme des outils</li>
+          <li>📚 <strong>Resources</strong> : accéder aux modèles chargés</li>
+          <li>💬 <strong>Prompts</strong> : templates de prompts pré-configurés</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        Exemples d'utilisation
+      </h2>
+
+      <p style="color:var(--dim);margin-bottom:12px"><strong>Tool : inférence locale</strong></p>
+      <pre>// Appel MCP depuis Claude Desktop
+{
+  "method": "tools/call",
+  "params": {
+    "name": "neuroforge_infer",
+    "arguments": {
+      "prompt": "Explique le téléchargement multi-parties",
+      "model": "llama-3.1-8b-instruct:Q4_K_M",
+      "temperature": 0.7,
+      "max_tokens": 512
+    }
+  }
+}</pre>
+
+      <p style="color:var(--dim);margin:16px 0 12px"><strong>Resource : liste des modèles</strong></p>
+      <pre>// Lister les modèles disponibles
+{
+  "method": "resources/read",
+  "params": {
+    "uri": "neuroforge://models"
+  }
+}
+
+// Réponse
+{
+  "contents": [{
+    "uri": "neuroforge://models",
+    "mimeType": "application/json",
+    "text": "[
+      {\"id\": \"llama-3.1-8b-instruct\", \"quant\": \"Q4_K_M\", \"loaded\": true},
+      {\"id\": \"mistral-7b-v0.3\", \"quant\": \"Q5_K_M\", \"loaded\": false}
+    ]"
+  }]
+}</pre>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Serveur MCP standalone
+      </h2>
+      <p style="color:var(--dim);margin-bottom:12px">Pour un usage avancé, installez le serveur MCP NEUROFORGE :</p>
+      <pre># Installation globale
+npm install -g @neuroforge/mcp-server
+
+# Lancement en mode stdio (pour Claude Desktop)
+neuroforge-mcp --transport stdio
+
+# Lancement en mode HTTP (pour API REST)
+neuroforge-mcp --transport http --port 3333
+
+# Configuration via variables d'environnement
+export NEUROFORGE_URL="http://localhost:1234"
+export NEUROFORGE_API_KEY="nf-votre-cle"
+neuroforge-mcp</pre>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Capacités MCP exposées
+      </h2>
+      <ul style="margin:0 0 0 20px;color:var(--dim)">
+        <li>🔧 <strong>Tools</strong></li>
+        <ul style="margin:4px 0 8px 20px;color:var(--mute)">
+          <li><code>neuroforge_infer</code> — inférence sur modèle local</li>
+          <li><code>neuroforge_load_model</code> — charger un modèle en mémoire</li>
+          <li><code>neuroforge_download</code> — télécharger un modèle GGUF</li>
+        </ul>
+        <li>📚 <strong>Resources</strong></li>
+        <ul style="margin:4px 0 8px 20px;color:var(--mute)">
+          <li><code>neuroforge://models</code> — catalogue de modèles</li>
+          <li><code>neuroforge://loaded</code> — modèles en mémoire</li>
+          <li><code>neuroforge://downloads</code> — téléchargements actifs</li>
+        </ul>
+        <li>💬 <strong>Prompts</strong></li>
+        <ul style="margin:4px 0 8px 20px;color:var(--mute)">
+          <li><code>code-review</code> — revue de code avec modèle local</li>
+          <li><code>translate</code> — traduction multilingue</li>
+          <li><code>summarize</code> — résumé de documents</li>
+        </ul>
+      </ul>
+      <a href="https://modelcontextprotocol.io" target="_blank" class="btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        Documentation MCP
+      </a>
+    </div>
+
+    <footer>
+      NEUROFORGE · Connecteur MCP · Model Context Protocol · Intégration IA locale
+    </footer>
+  </div>
+</body>
+</html>
